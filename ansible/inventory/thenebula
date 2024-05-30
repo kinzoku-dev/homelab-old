@@ -1,2 +1,6 @@
 [srv-prod]
-srv-prod-1.home.the-nebula.xyz
+srv-prod-1.home.the-nebula.xyz ansible_host=192.168.3.13
+
+[pve-prod]
+pve-prod-1.home.the-nebula.xyz ansible_host=192.168.3.11
+pve-prod-2.home.the-nebula.xyz ansible_host=192.168.3.12
