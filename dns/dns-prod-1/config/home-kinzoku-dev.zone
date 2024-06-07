@@ -1,0 +1,17 @@
+$TTL 2d
+
+$ORIGIN home.kinzoku.dev.
+
+@       IN  SOA       ns.home.kinzoku.dev.        kinzoku.the-nebula.xyz. (
+                      2024060700 ; serial
+                      12h        ; refresh
+                      15m        ; retry
+                      3w         ; expire
+                      2h         ; minimum TTL
+                      )
+
+        IN  NS        ns.home.kinzoku.dev.
+
+ns      IN  A         192.168.3.0
+
+; -- add dns records below
