@@ -18,9 +18,13 @@
       command: "lsb_release -cs"
       register: ubuntu_version
 
+    - name: get arch
+      command: "dpkg --print-architecture"
+      register: os_arch
+
     - name: add Docker repository
       apt_repository:
-        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ubuntu_version.stdout }} stable"
+        repo: "deb [arch={{ os_arch.stdout }}] https://download.docker.com/linux/ubuntu {{ ubuntu_version.stdout }} stable"
         state: present
 
     - name: update apt cache
