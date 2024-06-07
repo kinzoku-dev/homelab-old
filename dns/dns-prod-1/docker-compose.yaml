@@ -2,7 +2,7 @@
 services:
   bind9:
     container_name: dns-prod-1
-    image: ubuntu/bind9:9.18-22.04_beta
+    image: ubuntu/bind9:9.18-23.04_beta
     environment:
       - BIND9_USER=root
       - TZ=America/Chicago
