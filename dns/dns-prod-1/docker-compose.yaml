@@ -13,4 +13,5 @@ services:
       - ./config:/etc/bind
       - ./cache:/var/cache/bind
       - ./records:/var/lib/bind
+      - /etc/bind/named.conf.key:/etc/bind/named.conf.key
     restart: unless-stopped
