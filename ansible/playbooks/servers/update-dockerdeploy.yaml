@@ -1,6 +1,10 @@
 ---
 - hosts: "{{ hosts }}"
   tasks:
+    - name: create remote project dir
+      shell: |
+        mkdir -p {{ remote_project_dir }}
+
     - name: copy docker-compose file
       copy:
         src: "{{ local_project_dir }}/{{ item }}"
