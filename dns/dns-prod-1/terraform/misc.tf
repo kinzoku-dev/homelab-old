@@ -4,3 +4,5 @@ resource "dns_a_record_set" "nova" {
   addresses = ["192.168.1.10"]
   ttl       = 3600
 }
+
+# testing
