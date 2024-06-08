@@ -1,0 +1,41 @@
+---
+name: Update Config Files
+
+on:
+  push:
+    branches:
+      - main
+      - test
+      - dev
+    paths:
+      - "dns/dns-prod-1/config/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: SCP files via ssh key
+        uses: appleboy/scp-action@master
+        with:
+          username: kinzoku
+          host: srv-prod-3.home.kinzoku.dev
+          key: ${{ secrets.SSH_KINZOKU }}
+          source: "./dns/dns-prod-1/config/*"
+          target: "/home/kinzoku/dns-prod-1/"
+          overwrite: true
+          strip_components: 2
+
+      - name: Restart Docker Container
+        uses: fifsky/ssh-action@master
+        with:
+          user: kinzoku
+          host: srv-prod-3.home.kinzoku.dev
+          key: ${{ secrets.SSH_KINZOKU }}
+          command: |
+            cd dns-prod-1
+            docker compose restart
