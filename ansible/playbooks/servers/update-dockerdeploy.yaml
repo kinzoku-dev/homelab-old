@@ -12,6 +12,14 @@
       loop:
         - docker-compose.yaml
 
+    - name: copy .env file if needed
+      when: copy_env == "true"
+      copy:
+        src: "{{ local_project_dir }}/{{ item }}"
+        dest: "{{ remote_project_dir }}/{{ item }}"
+      loop:
+        - .env
+
     - name: deploy docker-compose project
       community.docker.docker_compose_v2:
         project_src: "{{ remote_project_dir }}"
