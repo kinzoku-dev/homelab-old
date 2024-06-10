@@ -20,6 +20,27 @@
       loop:
         - .env
 
+    - name: copy other files
+      when: extra_files is defined
+      copy:
+        src: "{{ local_project_dir }}/{{ item }}"
+        dest: "{{ remote_project_dir }}/{{ item }}"
+      loop: "{{ extra_files }}"
+
+    - name: copy other folders
+      when: extra_folders is defined
+      block:
+        - name: create src folders if needed
+          shell: |
+            mkdir -p {{ remote_project_dir }}/{{ item.dest }} -m 777
+          loop: "{{ extra_folders }}"
+          when: item.dest is defined
+        - name: copy folders
+          copy:
+            src: "{{ local_project_dir }}/{{ item.src }}"
+            dest: "{{ remote_project_dir }}/{{ item.dest | default('') }}"
+          loop: "{{ extra_folders }}"
+
     - name: deploy docker-compose project
       community.docker.docker_compose_v2:
         project_src: "{{ remote_project_dir }}"
