@@ -1,10 +1,13 @@
 ---
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
 services:
   bind9:
     container_name: dns-prod-1
     image: ubuntu/bind9:9.18-23.04_beta
-    user: "0"
-    network_mode: bridge
     environment:
       - BIND9_USER=root
       - TZ=America/Chicago
@@ -13,9 +16,10 @@ services:
       - ./cache:/var/cache/bind
       - ./records:/var/lib/bind
       - /etc/bind/named.conf.key:/etc/bind/named.conf.key
-    cap_add:
-      - NET_BIND_SERVICE
     ports:
       - "53:53/tcp"
       - "53:53/udp"
     restart: unless-stopped
+    networks:
+      - frontend
+      - backend
