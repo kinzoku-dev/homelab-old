@@ -13,7 +13,7 @@
         - docker-compose.yaml
 
     - name: copy .env file if needed
-      when: copy_env == "true"
+      when: copy_env is defined and copy_env == "true"
       copy:
         src: "{{ local_project_dir }}/{{ item }}"
         dest: "{{ remote_project_dir }}/{{ item }}"
