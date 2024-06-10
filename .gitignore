@@ -4,3 +4,4 @@
 **/.terraform.lock.hcl
 .direnv
 **/*.env*
+**/credentials.pkr.hcl
