@@ -8,7 +8,6 @@ services:
   twingate:
     container_name: twingate-connector-prod-1
     image: twingate/connector:1.67.0
-    network_mode: bridge
     environment:
       - SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
       - TWINGATE_API_ENDPOINT=/connector.stock
@@ -17,8 +16,6 @@ services:
       - TWINGATE_ACCESS_TOKEN=${TWINGATE_ACCESS_TOKEN}
       - TWINGATE_REFRESH_TOKEN=${TWINGATE_REFRESH_TOKEN}
       - TWINGATE_LOG_LEVEL=1
-    cap_add:
-      - NET_BIND_SERVICE
     sysctls:
       net.ipv4.ping_group_range: "0 2147483647"
     networks:
