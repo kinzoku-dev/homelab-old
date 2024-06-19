@@ -45,6 +45,7 @@ providers:
     exposedByDefault: false
     endpoint: "unix:///var/run/docker.sock"
     watch: true
+    network: frontend
   file:
     directory: /etc/traefik/conf/
     watch: true
