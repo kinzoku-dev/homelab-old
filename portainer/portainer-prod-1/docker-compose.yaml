@@ -1,0 +1,20 @@
+---
+volumes:
+  portainer-data:
+    driver: local
+services:
+  app:
+    container_name: portainer-prod-1
+    image: portainer/portainer-ce:2.20.3-alpine
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.portainer-prod-1.loadbalancer.server.port: "9000"
+      traefik.http.services.portainer-prod-1.loadbalancer.server.scheme: "http"
+      traefik.http.routers.portainer-prod-1-https.entrypoints: "websecure"
+      traefik.http.routers.portainer-prod-1-https.rule: "Host(`portainer-prod-1.srv-prod-1.home.kinzoku.dev`)"
+      traefik.http.routers.portainer-prod-1-https.tls: "true"
+      traefik.http.routers.portainer-prod-1-https.tls.certresolver: "cloudflare"
+    restart: unless-stopped
