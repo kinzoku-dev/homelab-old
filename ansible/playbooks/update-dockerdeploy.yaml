@@ -49,3 +49,4 @@
         state: present
         pull: policy
         remove_orphans: true
+        recreate: always
