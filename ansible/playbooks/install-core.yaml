@@ -7,4 +7,5 @@
         name:
           - prometheus-node-exporter
           - nfs-common
+          - unzip
         update_cache: true
