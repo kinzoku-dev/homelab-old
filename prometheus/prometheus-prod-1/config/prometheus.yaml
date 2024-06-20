@@ -8,6 +8,19 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:9090"]
 
+  - job_name: "cadvisor-prod-1"
+    scrape_interval: 5s
+    static_configs:
+      - targets: [cadvisor-prod-1:8080]
+
+  - job_name: "cadvisor-prod-2"
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
+    scrape_interval: 5s
+    static_configs:
+      - targets: [cadvisor-prod-2.srv-prod-2.home.kinzoku.dev:443]
+
   - job_name: "srv-prod-1"
     scrape_interval: 15s
     static_configs:
