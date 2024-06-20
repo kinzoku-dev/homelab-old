@@ -1,0 +1,22 @@
+---
+services:
+  telegraf:
+    image: telegraf:1.31.0-alpine
+    container_name: telegraf-prod-1
+    network_mode: host
+    volumes:
+      - ./config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./.env:/etc/default/telegraf:ro
+      - /etc/ssl/cert.pem:/etc/telegraf/cert.pem
+      - /etc/ssl/cert-key.pem:/etc/telegraf/cert-key.pem
+      - /etc/ssl/ca.pem:/etc/telegraf/ca.pem
+      - /:/hostfs:ro
+    environment:
+      - HOST_ETC=/hostfs/etc
+      - HOST_PROC=/hostfs/proc
+      - HOST_SYS=/hostfs/sys
+      - HOST_VAR=/hostfs/var
+      - HOST_RUN=/hostfs/run
+      - HOST_MOUNT_PREFIX=/hostfs
+    restart: unless-stopped
+    env_file: ./.env
