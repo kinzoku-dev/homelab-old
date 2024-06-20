@@ -1,0 +1,18 @@
+---
+networks:
+  backend:
+    external: true
+volumes:
+  promtail-data:
+    driver: local
+services:
+  promtail:
+    image: grafana/promtail:main
+    container_name: promtail-prod-2
+    volumes:
+      - /var/log:/var/log
+      - ./config:/etc/promtail
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+      - backend
