@@ -1,0 +1,28 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: Install docker loki plugin
+      ansible.builtin.shell: |
+        docker plugin install grafana/loki-docker-driver:2.9.2 --alias loki --grant-all-permissions
+      ignore_errors: true
+    - name: Update docker daemon config
+      ansible.builtin.shell: |
+        cat << EOF | tee /etc/docker/daemon.json
+        {
+          "debug" : true,
+          "log-driver": "loki",
+          "log-opts": {
+            "loki-url": "https://loki-prod-1.srv-prod-1.home.kinzoku.dev/loki/api/v1/push",
+            "loki-batch-size": "400",
+            "loki-tls-insecure-skip-verify": "true"
+          }
+        }
+        EOF
+      become: true
+    - name: Restart docker service
+      ansible.builtin.systemd:
+        daemon_reload: true
+        state: restarted
+        enabled: true
+        service: docker
+      become: true
