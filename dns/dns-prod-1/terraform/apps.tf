@@ -52,3 +52,10 @@ resource "dns_a_record_set" "loki-prod-1" {
   addresses = ["192.168.3.15"]
   ttl       = 3600
 }
+
+resource "dns_a_record_set" "ixdb-prod-1" {
+  zone      = "home.kinzoku.dev."
+  name      = "ixdb-prod-1.srv-prod-2"
+  addresses = ["192.168.3.16"]
+  ttl       = 3600
+}
