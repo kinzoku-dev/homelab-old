@@ -1,0 +1,9 @@
+---
+- name: Deploy cilium
+  include_tasks: cilium.yaml
+  tags: cilium
+
+- name: Remove tmp directory used for manifests
+  file:
+    path: /tmp/k3s
+    state: absent

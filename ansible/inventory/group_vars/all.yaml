@@ -1,0 +1,38 @@
+---
+k3s_version: v1.30.0+k3s1
+ansible_user: kinzoku
+systemd_dir: /etc/systemd/system
+
+system_timezone: "America/Chicago"
+
+cilium_iface: "eth0"
+cilium_mode: "native"
+cilium_tag: "v1.15.6"
+cilium_hubble: true
+
+cluster_cidr: "10.69.0.0/16"
+
+node_cidr: "192.168.0.0/17"
+
+apiserver_endpoint: "192.186.3.20"
+
+k3s_token: "b15c85dc7d38a3f073ff312b4a5cae0f"
+
+k3s_node_ip: "{{ ansible_facts[(cilium_iface)]['ipv4']['address'] }}"
+
+extra_args: >-
+  --node-ip={{ k3s_node_ip }}
+
+extra_server_args: >-
+  {{ extra_args }}
+  --flannel-backend=none
+  --disable-network-policy
+  --cluster-cidr={{ cluster_cidr | default('10.69.0.0/16') }}
+  --tls-san {{ apiserver_endpoint }}
+  --disable servicelb
+  --disable traefik
+
+extra_agent_args: >-
+  {{ extra_args }}
+
+kube_vip_tag_version: "v0.8.0"
