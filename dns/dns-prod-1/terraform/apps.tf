@@ -25,6 +25,13 @@ resource "dns_a_record_set" "prometheus-prod-1" {
   ttl       = 3600
 }
 
+resource "dns_a_record_set" "grafana-prod-1" {
+  zone      = "home.kinzoku.dev."
+  name      = "grafana-prod-1.srv-prod-1"
+  addresses = ["192.168.3.15"]
+  ttl       = 3600
+}
+
 resource "dns_a_record_set" "cadvisor-prod-1" {
   zone      = "home.kinzoku.dev."
   name      = "cadvisor-prod-1.srv-prod-1"
