@@ -1,0 +1,27 @@
+---
+networks:
+  backend:
+    external: true
+  frontend:
+    external: true
+volumes:
+  mariadb-data:
+services:
+  mariadb:
+    container_name: mdb-prod-1
+    image: mariadb:11.5.1-noble-rc
+    ports:
+      - 3306:3306
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - /etc/ssl/cert.pem:/etc/ssl/cert.pem
+      - /etc/ssl/cert-key.pem:/etc/ssl/cert-key.pem
+      - /etc/ssl/ca.pem:/etc/ssl/ca.pem
+      - ./config/:/etc/mysql/conf.d
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    env_file: ./.env
+    networks:
+      - frontend
+      - backend
+    restart: unless-stopped

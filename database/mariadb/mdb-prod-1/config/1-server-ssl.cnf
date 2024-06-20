@@ -1,0 +1,4 @@
+[mariadbd]
+ssl-ca = /etc/ssl/ca.pem
+ssl-cert = /etc/ssl/cert.pem
+ssl-key = /etc/ssl/cert-key.pem
