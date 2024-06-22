@@ -17,3 +17,10 @@ resource "dns_a_record_set" "mdb_prod_1" {
   addresses = ["192.168.3.16"]
   ttl       = 3600
 }
+
+resource "dns_a_record_set" "pgdb_prod_1" {
+  zone      = "home.kinzoku.dev."
+  name      = "pgdb-prod-1"
+  addresses = ["192.168.3.16"]
+  ttl       = 3600
+}
