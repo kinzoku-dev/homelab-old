@@ -2,6 +2,7 @@
 srv-prod-1.home.kinzoku.dev ansible_host=192.168.3.15 ansible_user=kinzoku
 srv-prod-2.home.kinzoku.dev ansible_host=192.168.3.16 ansible_user=kinzoku
 srv-prod-3.home.kinzoku.dev ansible_host=192.168.3.0 ansible_user=kinzoku
+srv-prod-4.home.kinzoku.dev ansible_host=192.168.3.21 ansible_user=kinzoku
 
 [pve-prod]
 pve-prod-1.home.kinzoku.dev ansible_host=192.168.3.11 ansible_user=root
@@ -10,6 +11,7 @@ pve-prod-2.home.kinzoku.dev ansible_host=192.168.3.12 ansible_user=root
 [vm-prod]
 srv-prod-1.home.kinzoku.dev
 srv-prod-2.home.kinzoku.dev
+srv-prod-4.home.kinzoku.dev
 
 [kube-prod-1_master]
 srv-prod-4.home.kinzoku.dev
