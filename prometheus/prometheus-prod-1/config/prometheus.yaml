@@ -36,6 +36,11 @@ scrape_configs:
     static_configs:
       - targets: [srv-prod-3.home.kinzoku.dev:9100]
 
+  - job_name: "srv-prod-4"
+    scrape_interval: 15s
+    static_configs:
+      - targets: [srv-prod-4.home.kinzoku.dev:9100]
+
   - job_name: "pve-prod-1"
     scrape_interval: 15s
     static_configs:
