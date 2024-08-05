@@ -7,7 +7,7 @@ networks:
 services:
   twingate:
     container_name: twingate-connector-prod-1
-    image: twingate/connector:1.67.0
+    image: twingate/connector:1.69.0
     environment:
       - SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
       - TWINGATE_API_ENDPOINT=/connector.stock
