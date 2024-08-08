@@ -9,7 +9,7 @@ volumes:
 services:
   postgres:
     container_name: pgdb-prod-1
-    image: postgres:16.3-alpine
+    image: postgres:16.4-alpine
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
