@@ -7,7 +7,7 @@ volumes:
     driver: local
 services:
   grafana:
-    image: grafana/grafana-oss:11.1.0
+    image: grafana/grafana-oss:11.1.4
     container_name: grafana-prod-1
     volumes:
       - grafana-data:/var/lib/grafana
