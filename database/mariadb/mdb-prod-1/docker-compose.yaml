@@ -9,7 +9,7 @@ volumes:
 services:
   mariadb:
     container_name: mdb-prod-1
-    image: mariadb:11.5.1-noble-rc
+    image: mariadb:11.6.1-noble-rc
     ports:
       - 3306:3306
     volumes:
