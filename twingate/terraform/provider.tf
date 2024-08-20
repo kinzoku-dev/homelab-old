@@ -4,7 +4,7 @@ terraform {
   required_providers {
     twingate = {
       source  = "Twingate/twingate"
-      version = "3.0.6"
+      version = "3.0.10"
     }
   }
   cloud {
